@@ -16,6 +16,7 @@ To apply this customization, after applying the changes with git,
 **you must make a database migration**.
 
 ```sh
+git cherry-pick f5067b5f6b8c219cd592385d5c0d0910510b61a0
 rails db:migrate
 ```
 
