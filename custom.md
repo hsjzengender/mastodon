@@ -6,6 +6,14 @@ This is a customized version of [Mastodon](https://github.com/mastodon/mastodon)
 
 ## Fix
 
+### font-src-allow-data-url
+
+| Latest Version | Branch                               |
+| -------------- | ------------------------------------ |
+| v1.0.0         | `custom/fix/font-src-allow-data-url` |
+
+This customization fixes the `Refused to load the font 'data:font/...` CSP error in browser.
+
 ## Chore
 
 ### dev-with-gitpod v1.0.0
