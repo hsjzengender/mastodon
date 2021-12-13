@@ -19,6 +19,7 @@ class PostStatusService < BaseService
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
+  # @option [String] :content_type Optional content type of the status
   # @option [Boolean] :with_rate_limit
   # @return [Status]
   def call(account, options = {})
@@ -30,6 +31,7 @@ class PostStatusService < BaseService
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
+    sanitize_content!
     preprocess_attributes!
 
     if scheduled?
@@ -108,6 +110,13 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
+  def sanitize_content!
+    return if @options[:content_type].nil? || @options[:content_type] == 'text/plain'
+
+    # https://api.rubyonrails.org/classes/ActionView/Helpers/SanitizeHelper.html
+    @text = sanitize(@text)
+  end
+
   def language_from_option(str)
     ISO_639.find(str)&.alpha2
   end
@@ -167,6 +176,7 @@ class PostStatusService < BaseService
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
+      content_type: @options[:content_type],
     }.compact
   end
 

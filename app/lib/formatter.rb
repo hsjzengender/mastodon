@@ -30,14 +30,21 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.active_mentions.map(&:account)
-    linkable_accounts << status.account
+    case status.content_type
+    when 'text/html'
+      raw_content = "RT @#{prepend_reblog} #{raw_content}" if prepend_reblog
+      html = raw_content
+    else # when 'text/plain'
+      linkable_accounts = status.active_mentions.map(&:account)
+      linkable_accounts << status.account
 
-    html = raw_content
-    html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
-    html = encode_and_link_urls(html, linkable_accounts)
-    html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
-    html = simple_format(html, {}, sanitize: false)
+      html = raw_content
+      html = "RT @#{prepend_reblog} #{html}" if prepend_reblog
+      html = encode_and_link_urls(html, linkable_accounts)
+      html = encode_custom_emojis(html, status.emojis, options[:autoplay]) if options[:custom_emojify]
+      html = simple_format(html, {}, sanitize: false)
+    end
+
     html = html.delete("\n")
 
     html.html_safe # rubocop:disable Rails/OutputSafety

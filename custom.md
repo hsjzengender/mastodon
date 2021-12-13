@@ -4,6 +4,43 @@ This is a customized version of [Mastodon](https://github.com/mastodon/mastodon)
 
 ## Feat
 
+### status-content-type-html
+
+This customization allows user to choose html content or plain text when posting status.
+
+| Latest Version | Branch                                 |
+| -------------- | -------------------------------------- |
+| v1.0.0         | `custom/feat/status-content-type-html` |
+
+To apply this customization, after applying the changes with git,
+**you must make a database migration**.
+
+```sh
+rails db:migrate
+```
+
+#### v1.0.0
+
+This version changes api `POST /api/v1/statuses`
+to allow users to specify `content_type` attribute of the status.
+
+`content_type` can be:
+
+- `"text/html"`
+- `"text/plain"`
+- `null` or unset, equivalent to `"text/plain"`
+
+##### Database Migration
+
+- [`AddContentTypeToStatuses`](db/migrate/20211210194200_add_content_type_to_statuses.rb)
+
+##### Compatibility
+
+- Backward compatible for older frontend: when `content_type` is `null` or unset, `content_type` defaults to `text/plain`.
+- Compatibility for other instances is currently untested and unknown
+
+> This version borrows many code from [mashirozx/mastodon#229](https://github.com/mashirozx/mastodon/pull/229). Thanks for the work.
+
 ## Fix
 
 ## Chore
