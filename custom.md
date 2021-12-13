@@ -14,6 +14,12 @@ This is a customized version of [Mastodon](https://github.com/mastodon/mastodon)
 
 This customization fixes the `Refused to load the font 'data:font/...` CSP error in browser.
 
+To apply, run:
+
+```sh
+git cherry-pick 5d03eaa7cb731237a04eb36c8b01d7fea20e8242
+```
+
 ## Chore
 
 ### dev-with-gitpod v1.0.0
