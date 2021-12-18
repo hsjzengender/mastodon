@@ -13,6 +13,12 @@ This is a customized version of [Mastodon](https://github.com/mastodon/mastodon)
 This customization allows admin to configure max toot chars
 with env var `MAX_TOOT_CHARS`.
 
+To apply, run:
+
+```sh
+git cherry-pick 79ce235ddaccbac65aebb195fdff3652136e4533
+```
+
 ### status-content-type-html
 
 This customization allows user to choose html content or plain text when posting status.
