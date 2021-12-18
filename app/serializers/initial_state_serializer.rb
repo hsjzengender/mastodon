@@ -2,9 +2,14 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
+             :max_toot_chars,
              :media_attachments, :settings
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
+  end
 
   def meta
     store = {

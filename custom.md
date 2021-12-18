@@ -4,6 +4,15 @@ This is a customized version of [Mastodon](https://github.com/mastodon/mastodon)
 
 ## Feat
 
+## max-toot-chars-from-env-var
+
+| Latest Version | Branch                                    |
+| -------------- | ----------------------------------------- |
+| v1.0.0         | `custom/feat/max-toot-chars-from-env-var` |
+
+This customization allows admin to configure max toot chars
+with env var `MAX_TOOT_CHARS`.
+
 ### status-content-type-html
 
 This customization allows user to choose html content or plain text when posting status.
