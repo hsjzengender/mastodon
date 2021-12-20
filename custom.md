@@ -10,15 +10,33 @@ This customization allows user to choose html content or plain text when posting
 
 | Latest Version | Branch                                 |
 | -------------- | -------------------------------------- |
-| v1.0.0         | `custom/feat/status-content-type-html` |
+| v2.0.0         | `custom/feat/status-content-type-html` |
 
 To apply this customization, after applying the changes with git,
 **you must make a database migration**.
 
 ```sh
-git cherry-pick f5067b5f6b8c219cd592385d5c0d0910510b61a0
+# if you are already based on `v3.4.4`
+git merge custom/feat/status-content-type-html
+# else
+git cherry-pick f5067b5f6b8c219cd592385d5c0d0910510b61a0^..custom/feat/status-content-type-html
+
+# after applying the changes, do a database migration
 rails db:migrate
 ```
+
+#### v2.0.0
+
+This version use a more relaxed sanitizer to sanitize html status.
+
+The new sanitizer config is `MASTODON_STATUS_HTML` defined in
+[`lib/sanitize_ext/sanitize_config.rb`](lib/sanitize_ext/sanitize_config.rb),
+which is based on
+[`Sanitize::Config::RELAXED`](https://github.com/rgrove/sanitize/blob/main/lib/sanitize/config/relaxed.rb).
+
+##### BREAKING CHANGES
+
+- use a more relaxed html sanitizer based on [`Sanitize::Config::RELAXED`](https://github.com/rgrove/sanitize/blob/main/lib/sanitize/config/relaxed.rb)
 
 #### v1.0.0
 
