@@ -115,5 +115,14 @@ class Sanitize
         'source' => { 'src' => HTTP_PROTOCOLS }
       )
     )
+
+    MASTODON_STATUS_HTML ||= freeze_config merge(
+      RELAXED,
+
+      attributes: merge(
+        RELAXED[:attributes],
+        :all => RELAXED[:attributes][:all] + %w(itemscope itemprop),
+      ),
+    )
   end
 end
