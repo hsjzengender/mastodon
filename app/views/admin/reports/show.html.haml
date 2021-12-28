@@ -33,9 +33,9 @@
         %td{ colspan: 3 }
           %time.formatted{ datetime: @report.created_at.iso8601 }
       %tr
-        %th= t('admin.reports.updated_at')
+        %th= t('admin.reports.category')
         %td{ colspan: 3 }
-          %time.formatted{ datetime: @report.updated_at.iso8601 }
+          = t(@report.category, scope: 'admin.reports.categories')
       %tr
         %th= t('admin.reports.status')
         %td
@@ -101,20 +101,25 @@
       %br/
     %time.formatted{ datetime: @report.created_at.iso8601 }
 
-- unless @report.statuses.empty?
-  %hr.spacer/
 
-  = form_for(@form, url: admin_report_reported_statuses_path(@report.id)) do |f|
-    .batch-table
-      .batch-table__toolbar
-        %label.batch-table__toolbar__select.batch-checkbox-all
-          = check_box_tag :batch_checkbox_all, nil, false
-        .batch-table__toolbar__actions
-          = f.button safe_join([fa_icon('eye-slash'), t('admin.statuses.batch.nsfw_on')]), name: :nsfw_on, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-          = f.button safe_join([fa_icon('eye'), t('admin.statuses.batch.nsfw_off')]), name: :nsfw_off, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+%hr.spacer/
+
+= form_for(@form, url: admin_account_statuses_path(@report.target_account_id, report_id: @report.id)) do |f|
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - unless @statuses.empty?
+          = f.button safe_join([fa_icon('times'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
           = f.button safe_join([fa_icon('trash'), t('admin.statuses.batch.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-      .batch-table__body
-        = render partial: 'admin/reports/status', collection: @report.statuses, locals: { f: f }
+    .batch-table__body
+      = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f }
+    .batch-table__footer
+      = link_to admin_account_statuses_path(@report.target_account_id, report_id: @report.id) do
+        %span
+          = fa_icon('plus')
+          = t('admin.reports.add_to_report')
 
 %hr.spacer/
 

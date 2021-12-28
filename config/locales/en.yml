@@ -558,10 +558,16 @@ en:
           one: "%{count} report"
           other: "%{count} reports"
       action_taken_by: Action taken by
+      add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
+      categories:
+        other: Unspecified
+        spam: Spam
+        violation: Rule violation
+      category: Reason for reporting
       comment:
         none: None
       created_at: Reported
@@ -690,8 +696,8 @@ en:
       back_to_account: Back to account page
       batch:
         delete: Delete
-        nsfw_off: Mark as not sensitive
-        nsfw_on: Mark as sensitive
+        remove_from_report: Remove from report
+        report: Report
       deleted: Deleted
       failed_to_execute: Failed to execute
       media:
@@ -1483,6 +1489,9 @@ en:
       further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
       subject: Please confirm attempted sign in
       title: Sign in attempt
+    statuses_deleted:
+      subject: Your posts have been removed
+      title: Posts removed
     warning:
       explanation:
         disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.

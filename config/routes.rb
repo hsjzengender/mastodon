@@ -231,8 +231,6 @@ Rails.application.routes.draw do
         post :reopen
         post :resolve
       end
-
-      resources :reported_statuses, only: [:create]
     end
 
     resources :report_notes, only: [:create, :destroy]
