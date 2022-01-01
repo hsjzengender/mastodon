@@ -65,7 +65,7 @@ function useEditorModal({ intl, history }) {
   const [textHtml, setTextHtml] = React.useState('');
 
   const onEditorChange = React.useCallback(() => {
-    const ins = editorRef?.current?.getInstance();
+    const ins = editorRef?.current;
     const markdown = ins?.getMarkdown();
     const html = markdown ? ins?.getHTML() || '' : '';
     setTextHtml(html);

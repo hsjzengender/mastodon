@@ -8,7 +8,9 @@ import CharacterCounter from '../../features/compose/components/character_counte
 import MarkdownButtonContainer from './button_container';
 
 import './editor_modal.scss';
-import '@toast-ui/editor/dist/toastui-editor.css';
+// import 'prosemirror-view/style/prosemirror.css';
+import '@toast-ui/editor/dist/toastui-editor-only.css';
+import './editor_viewer.scss';
 
 function stopKeyEvent(ev) {
   ev.stopPropagation();
@@ -37,6 +39,25 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
   textForCharacterCounting,
   onEditorChange,
 }) {
+  const refTuiEditor = React.useRef();
+
+  React.useEffect(() => {
+    editorRef.current = {
+      getMarkdown: () => {
+        const ins = refTuiEditor.current?.getInstance();
+        return ins?.getMarkdown();
+      },
+      getHTML: () => {
+        const ins = refTuiEditor.current?.getInstance();
+        if (!ins) return undefined;
+        const md = ins.getMarkdown();
+        if (!md) return '';
+        const html = ins.getHTML();
+        return `<div class="toastui-editor-contents">${html}</div>`;
+      },
+    };
+  }, []);
+
   return (
     <div
       className='modal-root__modal markdown-editor-modal'
@@ -70,7 +91,7 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
         </div>
         <div className='markdown-editor-modal__editor-container'>
           <Editor
-            ref={editorRef}
+            ref={refTuiEditor}
             initialValue={initialMarkdown}
             height='100%'
             previewStyle='vertical'

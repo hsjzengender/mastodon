@@ -138,9 +138,9 @@ export function submitCompose(routerHistory) {
     let contentType = undefined;
 
     if (md) {
-      const ins = md.editorRef?.current?.getInstance();
-      if (!ins) return;
-      status = ins.getHTML();
+      const html = md.editorRef?.current?.getHTML();
+      if (html === undefined) return; // editor not initialized yet. should prevent submitting
+      status = html;
       contentType = 'text/html';
     } else {
       status = getState().getIn(['compose', 'text'], '');

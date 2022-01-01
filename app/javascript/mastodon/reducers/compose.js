@@ -88,11 +88,12 @@ const initialState = ImmutableMap({
 
 export const MarkdownRecord = Record({
   /**
-   * @type { { current?: import('@toast-ui/react-editor').Editor } | null }
+   * `editorRef?.current?.getMarkdown()` returns the markdown;
    *
-   * `editorRef?.current?.getInstance().getMarkdown()` returns the markdown;
+   * `editorRef?.current?.getHTML()` returns the parsed html;
    *
-   * `editorRef?.current?.getInstance().getHTML()` returns the parsed html;
+   * If the editor instance is not available yet,
+   * the above methods will return `undefined`.
    */
   editorRef: null,
   initialMarkdown: '',
@@ -473,8 +474,7 @@ export default function compose(state = initialState, action) {
       } else {
         // before disabling markdown, store the text.
         const old = map.get('markdown');
-        const editorRef = old?.get('editorRef');
-        const editorIns = editorRef?.current?.getInstance();
+        const editorIns = old?.get('editorRef')?.current;
         const text = editorIns?.getMarkdown();
         if (text) {
           map.set('text', text);
