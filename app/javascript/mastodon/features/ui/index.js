@@ -55,6 +55,7 @@ import {
 } from './util/async-components';
 import { me } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
+import MarkdownEditorModalContainer from '../markdown/editor_modal_container';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -532,6 +533,7 @@ class UI extends React.PureComponent {
           </SwitchingColumnsArea>
 
           {layout !== 'mobile' && <PictureInPicture />}
+          <MarkdownEditorModalContainer />
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />

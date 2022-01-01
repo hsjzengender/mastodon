@@ -132,7 +132,19 @@ export function directCompose(account, routerHistory) {
 
 export function submitCompose(routerHistory) {
   return function (dispatch, getState) {
-    const status = getState().getIn(['compose', 'text'], '');
+    const md = getState().getIn(['compose', 'markdown']);
+
+    let status;
+    let contentType = undefined;
+
+    if (md) {
+      const ins = md.editorRef?.current?.getInstance();
+      if (!ins) return;
+      status = ins.getHTML();
+      contentType = 'text/html';
+    } else {
+      status = getState().getIn(['compose', 'text'], '');
+    }
     const media  = getState().getIn(['compose', 'media_attachments']);
 
     if ((!status || !status.length) && media.size === 0) {
@@ -149,11 +161,14 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
+      content_type: contentType,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
+      dispatch(changeMarkdown(false));
+
       if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
         routerHistory.goBack();
       }
@@ -652,9 +667,13 @@ export function changePollSettings(expiresIn, isMultiple) {
   };
 };
 
-export function changeMarkdown(markdown) {
+/**
+ *
+ * @param {boolean} enabled
+ */
+export function changeMarkdown(enabled) {
   return {
     type: COMPOSE_MARKDOWN_CHANGE,
-    value: markdown,
+    value: enabled,
   };
 }

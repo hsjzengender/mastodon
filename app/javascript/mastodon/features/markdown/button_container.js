@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../components/icon_button';
-import { openMarkdownEditor, closeMarkdownEditor } from './actions';
+import { changeMarkdown } from '../../actions/compose';
 
 const messages = defineMessages({
   enable: { id: 'markdown.enable', defaultMessage: 'Enable markdown' },
@@ -34,8 +34,7 @@ function MarkdownButton({ intl }) {
   const dispatch = useDispatch();
 
   const onClick = React.useCallback(() => {
-    const action = enabled ? closeMarkdownEditor() : openMarkdownEditor();
-    dispatch(action);
+    dispatch(changeMarkdown(!enabled));
   }, [dispatch, enabled]);
 
   return (

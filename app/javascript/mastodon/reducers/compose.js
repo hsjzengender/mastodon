@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   COMPOSE_MOUNT,
   COMPOSE_UNMOUNT,
@@ -80,20 +81,21 @@ const initialState = ImmutableMap({
   /**
    * When set to `null`, markdown is disabled.
    *
-   * When set to a {@link MarkdownRecord},
-   * `text` is the markdown text and
-   * `markdown.html` is the parsed html.
+   * When set to a {@link MarkdownRecord}, markdown is enabled.
    */
   markdown: null,
 });
 
 export const MarkdownRecord = Record({
   /**
-   * html parsed from markdown.
+   * @type { { current?: import('@toast-ui/react-editor').Editor } | null }
    *
-   * `null` means the markdown is not parsed yet.
+   * `editorRef?.current?.getInstance().getMarkdown()` returns the markdown;
+   *
+   * `editorRef?.current?.getInstance().getHTML()` returns the parsed html;
    */
-  html: null,
+  editorRef: null,
+  initialMarkdown: '',
 });
 
 const initialPoll = ImmutableMap({
@@ -455,7 +457,30 @@ export default function compose(state = initialState, action) {
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
   case COMPOSE_MARKDOWN_CHANGE:
-    return state.set('markdown', action.value);
+    return state.withMutations(map => {
+      const value = action.value;
+
+      if (value) {
+        const editorRef = React.createRef();
+        const initialMarkdown = map.get('text');
+        const md = new MarkdownRecord({
+          editorRef,
+          initialMarkdown,
+        });
+
+        map.set('markdown', md);
+      } else {
+        // before disabling markdown, store the text.
+        const old = map.get('markdown');
+        const editorRef = old?.get('editorRef');
+        const editorIns = editorRef?.current?.getInstance();
+        const text = editorIns?.getMarkdown();
+        if (text) {
+          map.set('text', text);
+        }
+        map.set('markdown', null);
+      }
+    });
   default:
     return state;
   }

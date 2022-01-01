@@ -197,13 +197,10 @@ class ComposeForm extends ImmutablePureComponent {
   render () {
     const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.isSubmitting;
-    let publishText = '';
-
-    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
-      publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
-    } else {
-      publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
-    }
+    const publishText = getPublishText({
+      intl,
+      privacy:this.props.privacy,
+    });
 
     return (
       <div className='compose-form'>
@@ -269,4 +266,15 @@ class ComposeForm extends ImmutablePureComponent {
     );
   }
 
+}
+
+export function getPublishText({
+  intl,
+  privacy,
+}) {
+  if (privacy === 'private' || privacy === 'direct') {
+    return <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
+  } else {
+    return privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
+  }
 }

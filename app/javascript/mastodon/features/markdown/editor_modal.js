@@ -1,6 +1,10 @@
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 import { Editor } from '@toast-ui/react-editor';
+import Button from '../../components/button';
 import PrivacyDropdownContainer from '../compose/containers/privacy_dropdown_container';
+import CharacterCounter from '../../features/compose/components/character_counter';
 import MarkdownButtonContainer from './button_container';
 
 import './editor_modal.scss';
@@ -8,7 +12,7 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 function stopKeyEvent(ev) {
   ev.stopPropagation();
-};
+}
 
 // TODO: implement upload image to mastodon
 // temporarily exclude image
@@ -23,7 +27,16 @@ const toolbarItems = [
   ['scrollSync'],
 ];
 
-const MarkdownEditorModal = React.memo(function MarkdownEditorModal() {
+const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
+  editorRef,
+  initialMarkdown,
+  publishText,
+  handleSubmit,
+  canSubmit,
+  max,
+  textForCharacterCounting,
+  onEditorChange,
+}) {
   return (
     <div
       className='modal-root__modal markdown-editor-modal'
@@ -41,15 +54,30 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal() {
             {/* <SpoilerButtonContainer /> */}
             <MarkdownButtonContainer />
           </div>
-          {/* <div className='character-counter__wrapper'><CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} /></div> */}
+          <div className='markdown-editor-modal__toolbar__publish-area'>
+            <div className='character-counter__wrapper'>
+              <CharacterCounter max={max} text={textForCharacterCounting} />
+            </div>
+            <div className='compose-form__publish-button-wrapper'>
+              <Button
+                text={publishText}
+                onClick={handleSubmit}
+                disabled={!canSubmit}
+                block
+              />
+            </div>
+          </div>
         </div>
         <div className='markdown-editor-modal__editor-container'>
           <Editor
+            ref={editorRef}
+            initialValue={initialMarkdown}
             height='100%'
             previewStyle='vertical'
             useCommandShortcut
             usageStatistics={false}
             toolbarItems={toolbarItems}
+            onChange={onEditorChange}
           />
         </div>
       </div>

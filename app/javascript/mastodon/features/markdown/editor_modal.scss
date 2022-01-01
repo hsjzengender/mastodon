@@ -67,6 +67,18 @@
 
     &__buttons {
       display: flex;
+      > * {
+        margin-right: 4px;
+      }
+    }
+
+    &__publish-area {
+      display: flex;
+      align-items: center;
+
+      > * {
+        margin-left: 4px;
+      }
     }
   }
 

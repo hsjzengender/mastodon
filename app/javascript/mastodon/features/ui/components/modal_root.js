@@ -86,7 +86,7 @@ export default class ModalRoot extends React.PureComponent {
     const { backgroundColor } = this.state;
     const visible = !!type;
 
-    const fetchComponent= typeof type === 'string'
+    const fetchComponent = typeof type === 'string'
       ? MODAL_COMPONENTS[type]
       : type;
 
