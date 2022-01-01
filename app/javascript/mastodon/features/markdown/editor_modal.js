@@ -41,14 +41,17 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
 }) {
   const refTuiEditor = React.useRef();
 
-  React.useEffect(() => {
+  const refIsFirstRun = React.useRef(true);
+
+  if (refIsFirstRun.current) {
+    refIsFirstRun.current = false;
     editorRef.current = {
       getMarkdown: () => {
-        const ins = refTuiEditor.current?.getInstance();
+        const ins = refTuiEditor.current;
         return ins?.getMarkdown();
       },
       getHTML: () => {
-        const ins = refTuiEditor.current?.getInstance();
+        const ins = refTuiEditor.current;
         if (!ins) return undefined;
         const md = ins.getMarkdown();
         if (!md) return '';
@@ -56,7 +59,12 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
         return `<div class="toastui-editor-contents">${html}</div>`;
       },
     };
-  }, []);
+  }
+
+  const onLoad = React.useCallback((ins) => {
+    refTuiEditor.current = ins;
+    onEditorChange();
+  }, [onEditorChange]);
 
   return (
     <div
@@ -91,7 +99,6 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
         </div>
         <div className='markdown-editor-modal__editor-container'>
           <Editor
-            ref={refTuiEditor}
             initialValue={initialMarkdown}
             height='100%'
             previewStyle='vertical'
@@ -99,6 +106,7 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
             usageStatistics={false}
             toolbarItems={toolbarItems}
             onChange={onEditorChange}
+            onLoad={onLoad}
           />
         </div>
       </div>
