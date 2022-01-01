@@ -54,7 +54,7 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
         const ins = refTuiEditor.current;
         if (!ins) return undefined;
         const md = ins.getMarkdown();
-        if (!md) return '';
+        if (!md || md.trim().length === 0) return '';
         const html = ins.getHTML();
         return `<div class="toastui-editor-contents">${html}</div>`;
       },
