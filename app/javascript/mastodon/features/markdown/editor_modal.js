@@ -29,6 +29,11 @@ const toolbarItems = [
   ['scrollSync'],
 ];
 
+const linkAttributes = {
+  target: '_blank',
+  rel: 'noreferrer noopener',
+};
+
 const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
   editorRef,
   initialMarkdown,
@@ -61,10 +66,13 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
     };
   }
 
-  const onLoad = React.useCallback((ins) => {
-    refTuiEditor.current = ins;
-    onEditorChange();
-  }, [onEditorChange]);
+  const onLoad = React.useCallback(
+    (ins) => {
+      refTuiEditor.current = ins;
+      onEditorChange();
+    },
+    [onEditorChange],
+  );
 
   return (
     <div
@@ -107,6 +115,7 @@ const MarkdownEditorModal = React.memo(function MarkdownEditorModal({
             toolbarItems={toolbarItems}
             onChange={onEditorChange}
             onLoad={onLoad}
+            linkAttributes={linkAttributes}
           />
         </div>
       </div>
