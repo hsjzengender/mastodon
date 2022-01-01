@@ -191,6 +191,7 @@
     "yargs": "^17.0.1"
   },
   "resolutions": {
+    "@toast-ui/editor/prosemirror-view": "1.18.7",
     "kind-of": "^6.0.3"
   },
   "optionalDependencies": {
