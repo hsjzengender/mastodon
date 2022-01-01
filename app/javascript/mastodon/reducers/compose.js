@@ -39,11 +39,12 @@ import {
   COMPOSE_POLL_OPTION_CHANGE,
   COMPOSE_POLL_OPTION_REMOVE,
   COMPOSE_POLL_SETTINGS_CHANGE,
+  COMPOSE_MARKDOWN_CHANGE,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
 import { REDRAFT } from '../actions/statuses';
-import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS, Record } from 'immutable';
 import uuid from '../uuid';
 import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
@@ -76,6 +77,23 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  /**
+   * When set to `null`, markdown is disabled.
+   *
+   * When set to a {@link MarkdownRecord},
+   * `text` is the markdown text and
+   * `markdown.html` is the parsed html.
+   */
+  markdown: null,
+});
+
+export const MarkdownRecord = Record({
+  /**
+   * html parsed from markdown.
+   *
+   * `null` means the markdown is not parsed yet.
+   */
+  html: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -436,6 +454,8 @@ export default function compose(state = initialState, action) {
     return state.updateIn(['poll', 'options'], options => options.delete(action.index));
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
+  case COMPOSE_MARKDOWN_CHANGE:
+    return state.set('markdown', action.value);
   default:
     return state;
   }

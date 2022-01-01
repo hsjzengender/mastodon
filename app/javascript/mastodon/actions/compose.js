@@ -63,6 +63,8 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+export const COMPOSE_MARKDOWN_CHANGE = 'COMPOSE_MARKDOWN_CHANGE';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
@@ -649,3 +651,10 @@ export function changePollSettings(expiresIn, isMultiple) {
     isMultiple,
   };
 };
+
+export function changeMarkdown(markdown) {
+  return {
+    type: COMPOSE_MARKDOWN_CHANGE,
+    value: markdown,
+  };
+}
