@@ -469,6 +469,7 @@ export default function compose(state = initialState, action) {
         });
 
         map.set('markdown', md);
+        map.set('is_composing', true);
       } else {
         // before disabling markdown, store the text.
         const old = map.get('markdown');
@@ -479,6 +480,7 @@ export default function compose(state = initialState, action) {
           map.set('text', text);
         }
         map.set('markdown', null);
+        map.set('is_composing', false);
       }
     });
   default:
