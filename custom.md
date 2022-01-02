@@ -62,13 +62,17 @@ To apply, run:
 # if you are already based on `v3.4.4`
 git merge custom/ui/cn-localization
 # else
-git cherry-pick 5b3e880b2ea237d6268a58c3a68b4045c959fdd3^..custom/ui/cn-localization
+git cherry-pick custom/ui/cn-localization-v0..custom/ui/cn-localization
 ```
 
 #### Changelog
 
 ##### v1
 
+- `1.1.0` Show bookmark icon button in status column.
+
+  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.1.0`
+
 - `1.0.0` Make icons of status operations more friendly to Weibo users.
 
-  `5b3e880b2ea237d6268a58c3a68b4045c959fdd3^..933f68fe535aec84206d5170eedcd9f79ab8d513`
+  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.0.0`
