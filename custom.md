@@ -70,4 +70,5 @@ git cherry-pick 5b3e880b2ea237d6268a58c3a68b4045c959fdd3^..custom/ui/cn-localiza
 ##### v1
 
 - `1.0.0` Make icons of status operations more friendly to Weibo users.
-  `5b3e880b2ea237d6268a58c3a68b4045c959fdd3`
+
+  `5b3e880b2ea237d6268a58c3a68b4045c959fdd3^..933f68fe535aec84206d5170eedcd9f79ab8d513`
