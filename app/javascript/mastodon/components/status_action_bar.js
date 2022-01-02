@@ -326,7 +326,7 @@ class StatusActionBar extends ImmutablePureComponent {
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? icons.reply : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon={icons.reblog} onClick={this.handleReblogClick} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon={icons.favourite} onClick={this.handleFavouriteClick} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon={icons.favourite} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} obfuscateCount />
         <IconButton className='status__action-bar-button bookmark-icon' active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon={icons.bookmark} onClick={this.handleBookmarkClick} />
 
         {shareButton}
