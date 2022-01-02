@@ -42,3 +42,32 @@ git merge custom/chore/dev-with-gitpod
 # else
 git cherry-pick 74658b2a40abd55e810d49a675044ca58be0ffe6^..custom/chore/dev-with-gitpod
 ```
+
+## UI
+
+### cn-localization
+
+| Latest Version | Branch                      |
+| -------------- | --------------------------- |
+| v1.0.0         | `custom/ui/cn-localization` |
+
+**Not merged into `custom/stable`**
+
+This customization makes Mastodon more friendly
+to users from China, especially those from Weibo.
+
+To apply, run:
+
+```sh
+# if you are already based on `v3.4.4`
+git merge custom/ui/cn-localization
+# else
+git cherry-pick 5b3e880b2ea237d6268a58c3a68b4045c959fdd3^..custom/ui/cn-localization
+```
+
+#### Changelog
+
+##### v1
+
+- `1.0.0` Make icons of status operations more friendly to Weibo users.
+  `5b3e880b2ea237d6268a58c3a68b4045c959fdd3`
