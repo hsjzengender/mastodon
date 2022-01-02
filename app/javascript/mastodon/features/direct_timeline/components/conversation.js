@@ -13,6 +13,7 @@ import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import { HotKeys } from 'react-hotkeys';
 import { autoPlayGif } from 'mastodon/initial_state';
 import classNames from 'classnames';
+import icons from 'mastodon/icons';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -177,7 +178,7 @@ class Conversation extends ImmutablePureComponent {
             )}
 
             <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
+              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon={icons.reply} onClick={this.handleReply} />
 
               <div className='status__action-bar-dropdown'>
                 <DropdownMenuContainer

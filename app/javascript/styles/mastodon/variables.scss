@@ -6,7 +6,11 @@ $error-red: #df405a !default;        // Cerise
 $warning-red: #ff5050 !default;      // Sunset Orange
 $gold-star: #ca8f04 !default;        // Dark Goldenrod
 
+// deprecated, use $bookmark-color instead
 $red-bookmark: $warning-red;
+
+$bookmark-color: $gold-star;
+$favourite-color: $warning-red;
 
 // Values from the classic Mastodon UI
 $classic-base-color: #282c37;         // Midnight Express
