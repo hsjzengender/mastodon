@@ -14,6 +14,8 @@ module ApplicationHelper
     ku
   ).freeze
 
+  ICONS = YAML.load_file(Rails.root.join('config', 'icons.yml'))
+
   def friendly_number_to_human(number, **options)
     # By default, the number of precision digits used by number_to_human
     # is looked up from the locales definition, and rails-i18n comes with
@@ -95,6 +97,11 @@ module ApplicationHelper
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
   end
 
+  def fa_icon_for(name, attributes = {})
+    icon = ICONS[name]
+    fa_icon(icon)
+  end
+
   def visibility_icon(status)
     if status.public_visibility?
       fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
@@ -174,6 +181,7 @@ module ApplicationHelper
       },
 
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
+      icons: ICONS,
     }
 
     permit_visibilities = %w(public unlisted private direct)

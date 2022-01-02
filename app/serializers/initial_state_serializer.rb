@@ -2,6 +2,7 @@
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
+             :icons,
              :max_toot_chars,
              :media_attachments, :settings
 
@@ -75,6 +76,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[object.current_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
     store
+  end
+
+  def icons
+    object.icons
   end
 
   def media_attachments
