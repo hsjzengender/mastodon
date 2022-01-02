@@ -69,11 +69,13 @@ git cherry-pick custom/ui/cn-localization-v0..custom/ui/cn-localization
 
 ##### v1
 
-- `1.2.0` Show favourites count of status in status column.
+- `1.2.1` Show favourites count of status in status column.
 
-  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.2.0`
+  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.2.1`
 
 - `1.1.0` Show bookmark icon button in status column.
+
+  `custom/ui/cn-localization-v1.2.1` Fix: bookmark menu group should be removed if there are no other menu items in the group.
 
   `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.1.0`
 
