@@ -82,3 +82,31 @@ git cherry-pick custom/ui/cn-localization-v0..custom/ui/cn-localization
 - `1.0.0` Make icons of status operations more friendly to Weibo users.
 
   `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.0.0`
+
+### status-replying-to
+
+| Latest Version | Branch                         |
+| -------------- | ------------------------------ |
+| v1.0.0         | `custom/ui/status-replying-to` |
+
+**Not merged into `custom/stable`**
+
+This customization shows whether a toot is
+replying to another toot.
+
+To apply, run:
+
+```sh
+# if you are already based on `v3.4.4`
+git merge custom/ui/status-replying-to
+# else
+git cherry-pick custom/ui/status-replying-to-v0..custom/ui/status-replying-to
+```
+
+#### Changelog
+
+##### v1
+
+- `1.0.0` Show `This is a reply` in status that is replying to another toot.
+
+  `custom/ui/status-replying-to-v0..custom/ui/status-replying-to-v1.0.0`
