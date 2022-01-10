@@ -42,3 +42,33 @@ git merge custom/chore/dev-with-gitpod
 # else
 git cherry-pick 74658b2a40abd55e810d49a675044ca58be0ffe6^..custom/chore/dev-with-gitpod
 ```
+
+## UI
+
+### status-replying-to
+
+| Latest Version | Branch                         |
+| -------------- | ------------------------------ |
+| v1.0.0         | `custom/ui/status-replying-to` |
+
+**Not merged into `custom/stable`**
+
+This customization shows whether a toot is
+replying to another toot.
+
+To apply, run:
+
+```sh
+# if you are already based on `v3.4.4`
+git merge custom/ui/status-replying-to
+# else
+git cherry-pick custom/ui/status-replying-to-v0..custom/ui/status-replying-to
+```
+
+#### Changelog
+
+##### v1
+
+- `1.0.0` Show `This is a reply` in status that is replying to another toot.
+
+  `custom/ui/status-replying-to-v0..custom/ui/status-replying-to-v1.0.0`
