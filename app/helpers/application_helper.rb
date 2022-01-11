@@ -98,8 +98,9 @@ module ApplicationHelper
   end
 
   def fa_icon_for(name, attributes = {})
-    icon = ICONS[name]
-    fa_icon(icon)
+    icon_name, *others = name.split(' ')
+    icon = ICONS[icon_name]
+    fa_icon([icon, *others].join(' '))
   end
 
   def visibility_icon(status)
