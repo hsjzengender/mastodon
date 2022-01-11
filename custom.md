@@ -69,9 +69,9 @@ git cherry-pick custom/ui/cn-localization-v0..custom/ui/cn-localization
 
 ##### v1
 
-- `1.2.1` Show favourites count of status in status column.
+- `1.2` Show favourites count of status in status column.
 
-  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.2.1`
+  `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.2.2`
 
 - `1.1.0` Show bookmark icon button in status column.
 
@@ -80,5 +80,7 @@ git cherry-pick custom/ui/cn-localization-v0..custom/ui/cn-localization
   `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.1.0`
 
 - `1.0.0` Make icons of status operations more friendly to Weibo users.
+
+  `custom/ui/cn-localization-v1.2.2` Fix: icons in `/@user` page are not changed.
 
   `custom/ui/cn-localization-v0..custom/ui/cn-localization-v1.0.0`
