@@ -1,6 +1,32 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
+## About Open Source License
+
+> This project is a fork of [Mastodon](https://github.com/mastodon/mastodon),
+> which is licensed under `GPL-3.0`.
+> For the features added to the original Mastodon,
+> the code and assets are also `GPL-3.0`.
+> For the new designs, however, the code, images and assets
+> are all **unlicensed** and
+> you shouldn't use, copy or publish them.
+>
+> The new designs include but are not limited to:
+>
+> - Site icons
+> - New login page
+>
+> 请注意，此项目基于 [Mastodon](https://github.com/mastodon/mastodon)。
+> 原 Mastodon 以 `GPL-3.0` 许可开源，
+> 此项目对于原项目增加的特性均以相同许可开源。
+> 但 hsjz 做出的新的设计是开源但 **unlicensed** 的。
+> 请不要使用新设计的代码、图片等资源。
+>
+> 新设计包括但不限于：
+>
+> - 网站图标
+> - 新的登录页面
+
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
