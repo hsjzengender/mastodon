@@ -24,7 +24,7 @@
 
   p {
     margin: 10px 0;
-    color: $primary-text-color;
+    color: #222;
   }
 
   > h1:first-of-type,
@@ -39,7 +39,7 @@
   h5,
   h6 {
     font-weight: bold;
-    color: $primary-text-color;
+    color: #222;
   }
 
   h1 {
@@ -152,7 +152,7 @@
   table {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 12px 0 14px;
-    color: $primary-text-color;
+    color: #222;
     width: auto;
     border-collapse: collapse;
     box-sizing: border-box;
@@ -367,4 +367,21 @@
   color: grey;
   line-height: 160%;
   position: absolute;
+}
+
+.status__content__text .toastui-editor-contents {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  table,
+  ul,
+  menu,
+  ol,
+  dir {
+    color: $primary-text-color;
+  }
 }
