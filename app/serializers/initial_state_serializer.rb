@@ -4,11 +4,16 @@ class InitialStateSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :meta, :compose, :accounts,
+             :max_toot_chars,
              :media_attachments, :settings,
              :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
+  end
 
   # rubocop:disable Metrics/AbcSize
   def meta

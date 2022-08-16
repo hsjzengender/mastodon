@@ -11,6 +11,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :domain, :title, :version, :source_url, :description,
              :usage, :thumbnail, :languages, :configuration,
+             :max_toot_chars,
              :registrations
 
   has_one :contact, serializer: ContactSerializer
@@ -99,6 +100,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       nil
     end
+  end
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
   end
 
   def markdown
