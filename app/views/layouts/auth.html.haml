@@ -1,5 +1,7 @@
 - content_for :header_tags do
+  = stylesheet_pack_tag 'auth', media: 'all', crossorigin: 'anonymous'
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
+  = javascript_pack_tag 'auth', crossorigin: 'anonymous'
 
 - content_for :content do
   .container-alt
@@ -7,6 +9,20 @@
       %h1
         = link_to root_path do
           = svg_logo_full
+
+      .desc-container
+        .slogan-container
+          .slogan
+            自我肯定
+          .slogan
+            同伴力量
+          .slogan
+            性别意识
+        .intro-container
+          %p 后花园如其名。它是一个庇护的空间
+          %p 是一个自由的、散漫的、融洽的、任人舒展的空间
+          %p 是后生和ta的朋友们
+          %p 可以驻留、休息、再启动的数字田野
 
     .form-container
       = render 'flashes'
