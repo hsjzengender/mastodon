@@ -1,0 +1,51 @@
+@use 'sass:color';
+
+@import 'hsjz/homepage/common';
+@import 'hsjz/homepage/form';
+@import 'hsjz/homepage/desc';
+
+.hsjz-desc-container {
+  margin-top: 20px;
+
+  .hsjz-intro-container {
+    padding-bottom: 0;
+  }
+}
+
+.landing__brand svg {
+  height: auto;
+  width: 100%;
+}
+
+.public-layout .header .brand {
+  padding: 6px 15px;
+  svg {
+    height: 32px;
+  }
+}
+
+.public-layout {
+  .public-account-bio,
+  .hero-widget__text {
+    background: rgba(white, 0.3);
+    backdrop-filter: blur(3px);
+  }
+}
+
+.box-widget,
+.nothing-here,
+.page-header,
+.directory__tag > a,
+.directory__tag > div,
+.landing-page__call-to-action,
+.contact-widget,
+.landing .hero-widget__text,
+.landing .hero-widget__footer,
+.landing-page__information.contact-widget {
+  background: color.change($ui-bg-color, $alpha: 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.lead {
+  text-align: center;
+}

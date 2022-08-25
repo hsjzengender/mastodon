@@ -1,0 +1,46 @@
+@use 'logo_resources';
+
+$ui-bg-color: #f5f3f1;
+$text-color: #665c7c;
+
+$input-height: 64px;
+
+$scrollbar-color: lighten(#665c7c, 20%);
+$scrollbar-bg-color: darken($ui-bg-color, 4%);
+
+body,
+body.lighter {
+  background-color: $ui-bg-color;
+  background-image: url('../images/flowers.svg');
+  background-repeat: no-repeat;
+  background-size: 660px;
+  background-position: 50% -110px;
+}
+
+html {
+  scrollbar-color: $scrollbar-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scrollbar-color;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: lighten($scrollbar-color, 2%);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: $scrollbar-color;
+}
+
+::-webkit-scrollbar-track {
+  background: $scrollbar-bg-color;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: $ui-bg-color;
+}
+
+::-webkit-scrollbar-track:active {
+  background: $ui-bg-color;
+}
