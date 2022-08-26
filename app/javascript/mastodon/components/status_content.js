@@ -10,6 +10,14 @@ import { autoPlayGif } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
+const ReplyingToContainer = React.memo(function ReplyingToContainer () {
+  return (
+    <div className='status__content__replying-to__container'>
+      <FormattedMessage id='status.this_is_a_reply' defaultMessage='This is a reply.' />
+    </div>
+  );
+});
+
 export default class StatusContent extends React.PureComponent {
 
   static contextTypes = {
@@ -173,6 +181,8 @@ export default class StatusContent extends React.PureComponent {
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
+    // replying to another user's status
+    const renderReplyingTo = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') !== status.getIn(['account', 'id']);
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -194,6 +204,8 @@ export default class StatusContent extends React.PureComponent {
       </button>
     );
 
+    const replyingToContainer = renderReplyingTo ? <ReplyingToContainer /> : null;
+
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
 
@@ -211,6 +223,7 @@ export default class StatusContent extends React.PureComponent {
 
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          {replyingToContainer}
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' />
             {' '}
@@ -229,6 +242,7 @@ export default class StatusContent extends React.PureComponent {
     } else if (this.props.onClick) {
       const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          {replyingToContainer}
           <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
@@ -245,6 +259,7 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          {replyingToContainer}
           <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}

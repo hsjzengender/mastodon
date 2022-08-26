@@ -1,0 +1,10 @@
+@use 'hsjz/homepage/logo_resources';
+
+.admin-wrapper .sidebar__toggle__logo {
+  a {
+    padding: 6px 15px;
+  }
+  svg {
+    height: 30px;
+  }
+}

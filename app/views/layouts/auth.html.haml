@@ -1,5 +1,9 @@
+- current_theme_override 'mastodon-light'
+
 - content_for :header_tags do
+  = stylesheet_pack_tag 'hsjz-homepage-auth', media: 'all', crossorigin: 'anonymous'
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
+  = javascript_pack_tag 'hsjz-homepage-auth', crossorigin: 'anonymous'
 
 - content_for :content do
   .container-alt
@@ -7,6 +11,7 @@
       %h1
         = link_to root_path do
           = svg_logo_full
+      = render 'hsjz/desc'
 
     .form-container
       = render 'flashes'
