@@ -860,6 +860,11 @@
       display: block;
     }
   }
+
+  .status__content__replying-to__container {
+    color: $action-button-color;
+    font-size: 14px;
+  }
 }
 
 .announcements__item__content {
