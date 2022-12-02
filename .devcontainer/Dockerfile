@@ -14,10 +14,14 @@ ARG NODE_VERSION="lts/*"
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"
 
 # [Optional] Uncomment this section to install additional OS packages.
+RUN sed -i "s@http://deb.debian.org@https://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libpam-dev
 
 # [Optional] Uncomment this line to install additional gems.
+# See https://mirrors.tuna.tsinghua.edu.cn/help/rubygems/
+RUN gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/ \
+    && bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
 RUN gem install foreman
 
 # [Optional] Uncomment this line to install global node packages.
