@@ -3,6 +3,11 @@ with env var `MAX_TOOT_CHARS`.
 
 # Changelog
 
+## v3
+
+There are no new features comparing to `v2`.
+The code of this version is rebased on `v4.0.2`.
+
 ## v2
 
 There are no new features comparing to `v1`.
