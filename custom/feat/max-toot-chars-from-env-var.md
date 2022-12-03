@@ -8,6 +8,12 @@ with env var `MAX_TOOT_CHARS`.
 There are no new features comparing to `v2`.
 The code of this version is rebased on `v4.0.2`.
 
+To apply, run:
+
+```sh
+git cherry-pick v4.0.2..custom/feat/max-toot-chars-from-env-var-v3
+```
+
 ## v2
 
 There are no new features comparing to `v1`.
