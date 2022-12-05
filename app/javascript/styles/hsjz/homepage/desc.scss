@@ -1,0 +1,25 @@
+.hsjz-desc-container {
+  color: $text-color;
+  max-width: 480px;
+  padding: 4px 20px;
+  margin: 0 auto;
+
+  .hsjz-slogan-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: 16px;
+    font-weight: 900;
+
+    > .hsjz-slogan {
+      margin: 0 12px;
+    }
+  }
+
+  .hsjz-intro-container {
+    text-align: center;
+    padding: 48px 24px;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.45em;
+  }
+}

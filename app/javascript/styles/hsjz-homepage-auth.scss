@@ -1,0 +1,80 @@
+@import 'hsjz/homepage/common';
+@import 'hsjz/homepage/form';
+@import 'hsjz/homepage/desc';
+
+html {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+body,
+body.lighter {
+  flex: 1 1 auto;
+  padding: 0 32px;
+
+  @media (min-width: 1024px) {
+    background-position-y: 50%;
+    background-position-y: calc(50% - 100px);
+
+    background-position-x: 0;
+    background-position-x: calc((100% - 1024px) * 0.26 + 160px);
+  }
+
+  @media (min-width: 1344px) {
+    background-position-x: calc(50% - 270px);
+  }
+}
+
+.logo-container {
+  h1 {
+    a {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    svg.logo {
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+
+.container-alt {
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    width: auto;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 90vh;
+
+    .intro-container {
+      margin-top: 80px;
+    }
+
+    .form-container {
+      flex: 1 1 auto;
+      max-width: 414px;
+    }
+
+    .hsjz-intro-container {
+      padding-top: 130px;
+    }
+  }
+}
+
+.form-footer a {
+  color: lighten($text-color, 10%);
+}
+
+.simple_form {
+  padding-left: 32px;
+  padding-right: 32px;
+
+  > .fields-group,
+  > .actions {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+}

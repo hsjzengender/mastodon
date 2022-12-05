@@ -1,0 +1,183 @@
+.simple_form .input.with_empty_label {
+  &.text {
+    .label_input__wrapper {
+      display: flex;
+      /* justify-content: center; */
+      align-items: center;
+    }
+  }
+
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='url'],
+  textarea {
+    border-color: transparent;
+  }
+
+  ::placeholder {
+    color: $text-color !important;
+  }
+
+  .hint {
+    color: $text-color;
+    margin-left: 32px;
+  }
+
+  .label_input {
+    > label {
+      color: $text-color;
+    }
+
+    input:not(.boolean),
+    textarea {
+      height: 64px;
+      border-radius: 32px;
+      color: $text-color;
+      background-color: transparent;
+      border-width: 2px;
+      margin: -2px;
+
+      &:invalid {
+        width: calc(100% + 4px);
+      }
+    }
+
+    textarea {
+      resize: none;
+      height: auto;
+      line-height: 1.2em;
+    }
+
+    .label_input__wrapper {
+      box-sizing: border-box;
+      height: 64px;
+      border-width: 2px;
+      border-color: transparent;
+      border-style: solid;
+      border-radius: 32px;
+      background-image: linear-gradient($ui-bg-color, $ui-bg-color),
+        linear-gradient(
+          91.62deg,
+          rgba(102, 92, 124, 0.84) 0%,
+          rgba(102, 92, 124, 0.32) 100%
+        );
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+
+    .label_input__append {
+      color: lighten($text-color, 4%);
+      top: 11px;
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &.boolean {
+    .label_input {
+      input.boolean {
+        background-color: $ui-bg-color;
+        margin: 4px 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 0;
+        border-width: 2px;
+        border-color: $text-color;
+        border-style: solid;
+        border-image-source: linear-gradient(
+          135deg,
+          rgba(102, 92, 124, 0.78) 0%,
+          rgba(102, 92, 124, 0.22) 100%
+        );
+      }
+      .label_input__wrapper {
+        border: none;
+        height: auto;
+      }
+    }
+  }
+
+  .label_input {
+    position: relative;
+
+    label {
+      > * {
+        display: none;
+      }
+
+      z-index: 1000;
+      color: transparent;
+      font-size: 0;
+      user-select: none;
+      overflow: hidden;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      left: 20px;
+      top: 12px;
+    }
+
+    input,
+    textarea {
+      padding-left: 70px;
+    }
+
+    textarea {
+      margin-right: 26px;
+    }
+  }
+
+  &.user_account_username,
+  &.user_account_display_name {
+    label::before {
+      content: url(../images/hsjz/user.svg);
+    }
+  }
+
+  &.user_email label::before {
+    content: url(../images/hsjz/email.svg);
+  }
+
+  &.user_password,
+  &.user_password_confirmation {
+    label::before {
+      content: url(../images/hsjz/password.svg);
+    }
+  }
+
+  &.user_invite_request_text label::before {
+    content: url(../images/hsjz/apply.svg);
+  }
+}
+
+.simple_form .fields-group.fields-group--agreement {
+  display: flex;
+  justify-content: center;
+}
+
+.simple_form button,
+.simple_form .button,
+.simple_form .block-button {
+  height: 64px;
+  border-radius: 32px;
+
+  color: white;
+  background: linear-gradient(
+    91.62deg,
+    rgba(102, 92, 124, 0.81) 0%,
+    rgba(102, 92, 124, 0.22) 100%
+  );
+
+  transition: background-color ease-out 0.2s;
+
+  &:hover {
+    background-color: #b499ff;
+  }
+}
+
+.simple_form a.button {
+  line-height: 44px;
+}
