@@ -2,6 +2,7 @@
   &.text {
     .label_input__wrapper {
       display: flex;
+
       /* justify-content: center; */
       align-items: center;
     }
@@ -57,11 +58,12 @@
       border-color: transparent;
       border-style: solid;
       border-radius: 32px;
-      background-image: linear-gradient($ui-bg-color, $ui-bg-color),
+      background-image:
+        linear-gradient($ui-bg-color, $ui-bg-color),
         linear-gradient(
           91.62deg,
-          rgba(102, 92, 124, 0.84) 0%,
-          rgba(102, 92, 124, 0.32) 100%
+          rgba(102, 92, 124, 84%) 0%,
+          rgba(102, 92, 124, 32%) 100%
         );
       background-origin: border-box;
       background-clip: padding-box, border-box;
@@ -70,6 +72,7 @@
     .label_input__append {
       color: lighten($text-color, 4%);
       top: 11px;
+
       &::after {
         display: none;
       }
@@ -87,12 +90,14 @@
         border-width: 2px;
         border-color: $text-color;
         border-style: solid;
-        border-image-source: linear-gradient(
-          135deg,
-          rgba(102, 92, 124, 0.78) 0%,
-          rgba(102, 92, 124, 0.22) 100%
-        );
+        border-image-source:
+          linear-gradient(
+            135deg,
+            rgba(102, 92, 124, 78%) 0%,
+            rgba(102, 92, 124, 22%) 100%
+          );
       }
+
       .label_input__wrapper {
         border: none;
         height: auto;
@@ -133,23 +138,23 @@
   &.user_account_username,
   &.user_account_display_name {
     label::before {
-      content: url(../images/hsjz/user.svg);
+      content: url('../images/hsjz/user.svg');
     }
   }
 
   &.user_email label::before {
-    content: url(../images/hsjz/email.svg);
+    content: url('../images/hsjz/email.svg');
   }
 
   &.user_password,
   &.user_password_confirmation {
     label::before {
-      content: url(../images/hsjz/password.svg);
+      content: url('../images/hsjz/password.svg');
     }
   }
 
   &.user_invite_request_text label::before {
-    content: url(../images/hsjz/apply.svg);
+    content: url('../images/hsjz/apply.svg');
   }
 }
 
@@ -163,14 +168,13 @@
 .simple_form .block-button {
   height: 64px;
   border-radius: 32px;
-
   color: white;
-  background: linear-gradient(
-    91.62deg,
-    rgba(102, 92, 124, 0.81) 0%,
-    rgba(102, 92, 124, 0.22) 100%
-  );
-
+  background:
+    linear-gradient(
+      91.62deg,
+      rgba(102, 92, 124, 81%) 0%,
+      rgba(102, 92, 124, 22%) 100%
+    );
   transition: background-color ease-out 0.2s;
 
   &:hover {
