@@ -1,5 +1,6 @@
 - content_for :header_tags do
   = render_initial_state
+  = stylesheet_pack_tag 'hsjz-homepage-admin', media: 'all', crossorigin: 'anonymous'
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
 - content_for :content do

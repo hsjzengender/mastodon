@@ -12,14 +12,18 @@
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
     %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }/
+    %link{ rel: 'icon', href: '/favicon-dark.ico', type: 'image/x-icon', media: '(prefers-color-scheme:dark)' }/
+    %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon', media: '(prefers-color-scheme:light)' }/
 
     - %w(16 32 48).each do |size|
       %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-dark-#{size}x#{size}.png"), type: 'image/png', media: '(prefers-color-scheme:dark)' }/
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png', media: '(prefers-color-scheme:light)' }/
 
     - %w(57 60 72 76 114 120 144 152 167 180 1024).each do |size|
       %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/apple-touch-icon-#{size}x#{size}.png") }/
 
-    %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#6364FF' }/
+    %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#B499FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
     %meta{ name: 'theme-color', content: '#191b22' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/

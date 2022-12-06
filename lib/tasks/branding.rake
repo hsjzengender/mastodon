@@ -36,6 +36,7 @@ namespace :branding do
   desc 'Generate favicons and app icons from SVG source files'
   task generate_app_icons: :environment do
     favicon_source  = Rails.root.join('app', 'javascript', 'images', 'logo.svg')
+    favicon_dark_source  = Rails.root.join('app', 'javascript', 'images', 'logo-dark.svg')
     app_icon_source = Rails.root.join('app', 'javascript', 'images', 'app-icon.svg')
     output_dest     = Rails.root.join('app', 'javascript', 'icons')
 
@@ -54,7 +55,17 @@ namespace :branding do
       rsvg_convert.run(size: size, input: favicon_source, output: output_path)
     end
 
+    favicons_dark = []
+
+    favicon_sizes.each do |size|
+      output_path = output_dest.join("favicon-dark-#{size}x#{size}.png")
+      favicons_dark << output_path
+      rsvg_convert.run(size: size, input: favicon_dark_source, output: output_path)
+    end
+
     convert.run(input: favicons, output: Rails.root.join('public', 'favicon.ico'))
+
+    convert.run(input: favicons_dark, output: Rails.root.join('public', 'favicon-dark.ico'))
 
     apple_icon_sizes.each do |size|
       rsvg_convert.run(size: size, input: app_icon_source, output: output_dest.join("apple-touch-icon-#{size}x#{size}.png"))
