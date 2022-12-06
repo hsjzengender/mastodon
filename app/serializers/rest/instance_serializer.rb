@@ -88,6 +88,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     }
   end
 
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
+  end
+
   private
 
   def registrations_enabled?
@@ -100,10 +104,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       nil
     end
-  end
-
-  def max_toot_chars
-    StatusLengthValidator::MAX_CHARS
   end
 
   def markdown
