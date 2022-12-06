@@ -16,6 +16,47 @@
 [crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
+## 后花园
+
+后花园在 Mastodon 的基础上进行了以下自定义修改。
+
+| 自定义                                         | Branch                                         | Remote    |
+| ---------------------------------------------- | ---------------------------------------------- | --------- |
+| 使用 `MAX_TOOT_CHARS` 环境变量设置嘟嘟最大字数 | custom/feat/max-toot-chars-from-env-var-v3     | [equalma] |
+| 后花园站点图标                                 | custom/hsjz/favicon-v3                         | [hsjz]    |
+| 后花园主页                                     | custom/hsjz/homepage-v3                        | [hsjz]    |
+| 使用“蒂蒂”代替“点赞”                           | custom/hsjz/didi-v3                            | [hsjz]    |
+| 在嘟嘟操作栏中显示赞和转发的数量               | custom/ui/status-list-default-with-counters-v3 | [equalma] |
+| 在嘟嘟操作栏中显示收藏图标                     | Mastodon 4.0.x implemented this                |           |
+| “这条嘟嘟是一则回复”                           | custom/ui/status-replying-to-v3                | [equalma] |
+
+[hsjz]: https://github.com/hsjzengender/mastodon.git
+[equalma]: https://github.com/EqualMa/mastodon.git
+
+> This project is a fork of [Mastodon](https://github.com/mastodon/mastodon),
+> which is licensed under `GPL-3.0`.
+> For the features added to the original Mastodon,
+> the code and assets are also `GPL-3.0`.
+> For the new designs, however, the code, images and assets
+> are all **unlicensed** and
+> you shouldn't use, copy or publish them.
+>
+> The new designs include but are not limited to:
+>
+> - Site icons
+> - New login page
+>
+> 请注意，此项目基于 [Mastodon](https://github.com/mastodon/mastodon)。
+> 原 Mastodon 以 `GPL-3.0` 许可开源，
+> 此项目对于原项目增加的特性均以相同许可开源。
+> 但 hsjz 做出的新的设计是开源但 **unlicensed** 的。
+> 请不要使用新设计的代码、图片等资源。
+>
+> 新设计包括但不限于：
+>
+> - 网站图标
+> - 新的登录页面
+
 Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub)!
 
 Click below to **learn more** in a video:

@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - 'hsjz'
     tags:
-      - '*'
+      - 'hsjz-v*'
   pull_request:
     paths:
       - .github/workflows/build-image.yml
@@ -28,19 +28,21 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: tootsuite/mastodon
+          images: hsjz/garden
           flavor: |
             latest=auto
           tags: |
-            type=edge,branch=main
+            type=edge,branch=hsjz
+            type=match,pattern=hsjz-(v.*),group=1
             type=pep440,pattern={{raw}}
             type=pep440,pattern=v{{major}}.{{minor}}
             type=ref,event=pr
       - uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          # platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=tootsuite/mastodon:edge
+          cache-from: type=registry,ref=hsjz/garden:edge
           cache-to: type=inline
