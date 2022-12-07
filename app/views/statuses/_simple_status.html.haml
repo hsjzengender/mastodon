@@ -55,16 +55,16 @@
   .status__action-bar
     %span.status__action-bar-button.icon-button.icon-button--with-counter
       - if status.in_reply_to_id.nil?
-        = fa_icon 'reply fw'
+        = fa_icon_for 'reply fw'
       - else
-        = fa_icon 'reply-all fw'
+        = fa_icon_for 'reply_all fw'
       %span.icon-button__counter= obscured_counter status.replies_count
     %span.status__action-bar-button.icon-button
       - if status.distributable?
-        = fa_icon 'retweet fw'
+        = fa_icon_for 'reblog fw'
       - elsif status.private_visibility? || status.limited_visibility?
         = fa_icon 'lock fw'
       - else
         = fa_icon 'at fw'
     %span.status__action-bar-button.icon-button
-      = fa_icon 'star fw'
+      = fa_icon_for 'favourite fw'

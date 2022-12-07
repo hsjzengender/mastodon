@@ -12,6 +12,7 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import Icon from 'mastodon/components/icon';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import icons from 'mastodon/icons';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favourited your status' },
@@ -189,7 +190,7 @@ class Notification extends ImmutablePureComponent {
         <div className={classNames('notification notification-favourite focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.favourite, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon id='star' className='star-icon' fixedWidth />
+              <Icon id={icons.favourite} className='star-icon' fixedWidth />
             </div>
 
             <span title={notification.get('created_at')}>
@@ -221,7 +222,7 @@ class Notification extends ImmutablePureComponent {
         <div className={classNames('notification notification-reblog focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.reblog, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
-              <Icon id='retweet' fixedWidth />
+              <Icon id={icons.reblog} fixedWidth />
             </div>
 
             <span title={notification.get('created_at')}>
