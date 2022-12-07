@@ -5,6 +5,7 @@ import { registrationsOpen } from 'mastodon/initial_state';
 import { connect } from 'react-redux';
 import Icon from 'mastodon/components/icon';
 import classNames from 'classnames';
+import icons from 'mastodon/icons';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 
 const mapStateToProps = (state, { accountId }) => ({
@@ -97,17 +98,17 @@ class InteractionModal extends React.PureComponent {
 
     switch(type) {
     case 'reply':
-      icon = <Icon id='reply' />;
+      icon = <Icon id={icons.reply} />;
       title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
       break;
     case 'reblog':
-      icon = <Icon id='retweet' />;
+      icon = <Icon id={icons.reblog} />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
       break;
     case 'favourite':
-      icon = <Icon id='star' />;
+      icon = <Icon id={icons.favourite} />;
       title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favourite {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favourite this post to let the author know you appreciate it and save it for later.' />;
       break;

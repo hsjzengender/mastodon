@@ -14,6 +14,15 @@ class HtmlAwareFormatter
     @options = options
   end
 
+  def to_s_status_html
+    return ''.html_safe if text.blank?
+    return to_s unless local?
+
+    Sanitize.fragment(text, Sanitize::Config::MASTODON_STATUS_HTML)
+  rescue ArgumentError
+    ''.html_safe
+  end
+
   def to_s
     return ''.html_safe if text.blank?
 

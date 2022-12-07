@@ -14,6 +14,7 @@ import AttachmentList from 'mastodon/components/attachment_list';
 import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
 import classNames from 'classnames';
 import { changeBoostPrivacy } from 'mastodon/actions/boosts';
+import icons from 'mastodon/icons';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
@@ -124,7 +125,7 @@ class BoostModal extends ImmutablePureComponent {
         </div>
 
         <div className='boost-modal__action-bar'>
-          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} /></div>
+          <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id={icons.reblog} /></span> }} /></div>
           {status.get('visibility') !== 'private' && !status.get('reblogged') && (
             <PrivacyDropdown
               noDirect

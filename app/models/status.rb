@@ -23,6 +23,7 @@
 #  in_reply_to_account_id       :bigint(8)
 #  poll_id                      :bigint(8)
 #  deleted_at                   :datetime
+#  content_type                 :string
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
@@ -83,6 +84,7 @@ class Status < ApplicationRecord
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
   validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
+  validates :content_type, inclusion: { in: %w(text/plain text/html) }, allow_nil: true
 
   accepts_nested_attributes_for :poll
 
@@ -321,6 +323,10 @@ class Status < ApplicationRecord
   class << self
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
+    end
+
+    def selectable_content_types
+      %w(text/plain text/html)
     end
 
     def favourites_map(status_ids, account_id)

@@ -1,0 +1,10 @@
+# reply: reply
+reply: commenting-o
+# reply_all: reply-all
+reply_all: comments-o
+# reblog: retweet
+reblog: share
+# favourite: star
+favourite: heart
+# bookmark: bookmark
+bookmark: star

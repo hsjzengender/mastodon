@@ -15,6 +15,10 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
+    if status.content_type == 'text/html'
+      return HtmlAwareFormatter.new(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : [])).to_s_status_html
+    end
+
     html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 

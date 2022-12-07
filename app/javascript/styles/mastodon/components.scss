@@ -1739,16 +1739,16 @@ a.account__display-name {
 
 .notification__favourite-icon-wrapper {
   .star-icon {
-    color: $gold-star;
+    color: $favourite-color;
   }
 }
 
 .icon-button.star-icon.active {
-  color: $gold-star;
+  color: $favourite-color;
 }
 
 .icon-button.bookmark-icon.active {
-  color: $red-bookmark;
+  color: $bookmark-color;
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -4981,16 +4981,16 @@ a.status-card.compact:hover {
       }
 
       &.star-icon.active {
-        color: $gold-star;
+        color: $favourite-color;
 
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: rgba($favourite-color, 0.15);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: rgba($favourite-color, 0.3);
         }
       }
 

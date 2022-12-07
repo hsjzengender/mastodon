@@ -58,20 +58,20 @@
       ·
     %span.detailed-status__link
       - if status.in_reply_to_id.nil?
-        = fa_icon('reply')
+        = fa_icon_for('reply')
       - else
-        = fa_icon('reply-all')
+        = fa_icon_for('reply_all')
       %span.detailed-status__reblogs>= friendly_number_to_human status.replies_count
       = " "
     ·
     - if status.public_visibility? || status.unlisted_visibility?
       %span.detailed-status__link
-        = fa_icon('retweet')
+        = fa_icon_for('reblog')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
         = " "
       ·
     %span.detailed-status__link
-      = fa_icon('star')
+      = fa_icon_for('favourite')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
       = " "
 

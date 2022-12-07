@@ -4,6 +4,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :meta, :compose, :accounts,
+             :icons,
              :max_toot_chars,
              :media_attachments, :settings,
              :languages
@@ -100,6 +101,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[object.moved_to_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.moved_to_account, serializer: REST::AccountSerializer) if object.moved_to_account
 
     store
+  end
+
+  def icons
+    object.icons
   end
 
   def media_attachments
