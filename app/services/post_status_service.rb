@@ -118,7 +118,7 @@ class PostStatusService < BaseService
   def sanitize_content!
     return if @options[:content_type].nil? || @options[:content_type] == 'text/plain'
 
-    @text = Formatter.instance.sanitize(@text, Sanitize::Config::MASTODON_STATUS_HTML)
+    @text = Sanitize.fragment(@text, Sanitize::Config::MASTODON_STATUS_HTML)
   end
 
   def process_mentions_service
