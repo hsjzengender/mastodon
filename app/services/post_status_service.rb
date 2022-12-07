@@ -20,6 +20,7 @@ class PostStatusService < BaseService
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
+  # @option [String] :content_type Optional content type of the status
   # @option [Boolean] :with_rate_limit
   # @return [Status]
   def call(account, options = {})
@@ -31,6 +32,7 @@ class PostStatusService < BaseService
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
+    sanitize_content!
     preprocess_attributes!
 
     if scheduled?
@@ -113,6 +115,12 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
+  def sanitize_content!
+    return if @options[:content_type].nil? || @options[:content_type] == 'text/plain'
+
+    @text = Formatter.instance.sanitize(@text, Sanitize::Config::MASTODON_STATUS_HTML)
+  end
+
   def process_mentions_service
     ProcessMentionsService.new
   end
@@ -169,6 +177,7 @@ class PostStatusService < BaseService
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
+      content_type: @options[:content_type],
     }.compact
   end
 
