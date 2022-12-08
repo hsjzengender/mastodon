@@ -34,7 +34,7 @@ jobs:
             latest=auto
           tags: |
             type=edge,branch=hsjz
-            type=edge,prefix=special,branch=hsjz-special-v3
+            type=edge,prefix=special-,branch=hsjz-special-v3
             type=match,pattern=hsjz-(v.*),group=1
             type=pep440,pattern={{raw}}
             type=pep440,pattern=v{{major}}.{{minor}}
@@ -46,5 +46,5 @@ jobs:
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=hsjz/garden:edge
+          cache-from: type=registry,ref=hsjz/garden:specialedge
           cache-to: type=inline
