@@ -34,7 +34,7 @@ jobs:
             latest=auto
           tags: |
             type=edge,branch=hsjz
-            type=match,pattern=hsjz-(special-v.*),group=1
+            type=edge,prefix=special,branch=hsjz-special-v3
             type=match,pattern=hsjz-(v.*),group=1
             type=pep440,pattern={{raw}}
             type=pep440,pattern=v{{major}}.{{minor}}
