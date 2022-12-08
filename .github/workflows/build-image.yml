@@ -46,5 +46,5 @@ jobs:
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=hsjz/garden:specialedge
+          cache-from: type=registry,ref=hsjz/garden:special-edge
           cache-to: type=inline
